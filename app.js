@@ -29,7 +29,7 @@ const storage = multer.diskStorage({
   const upload = multer({ storage: storage })
 
 const server = http.createServer(app);
-server.listen(3000,()=> console.log('Server is running on http://localhost:9000')) 
+server.listen(9000,()=> console.log('Server is running on http://localhost:9000')) 
 
 const { Server } = require("socket.io");
 const io = new Server(server); // io will handle all our sockets and express will handle http requests
@@ -159,7 +159,7 @@ sequelize
 .sync({force:false})
 .then(result=>{
     console.log('Database synced!'); 
-    //app.listen(process.env.PORT || 3000,()=>{console.log(`Server is running on http://localhost:${process.env.PORT || 3000}`)});
+    //app.listen(process.env.PORT || 9000,()=>{console.log(`Server is running on http://localhost:${process.env.PORT || 9000}`)});
 })
 .catch(err=>{
     console.log(err) 

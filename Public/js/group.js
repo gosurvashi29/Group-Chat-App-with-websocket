@@ -30,7 +30,7 @@ if (!token) {
 // Load and display all groups
 async function loadGroups() {
     try {
-        const response = await axios.get('http://localhost:3000/groups', {
+        const response = await axios.get('http://localhost:9000/groups', {
             headers: { 'Authorization': token }
         });
 
@@ -67,7 +67,7 @@ async function selectGroup(groupId) {
     selectedGroupId = groupId;
 
     try {
-        const response = await axios.get('http://localhost:3000/groups/messages', {
+        const response = await axios.get('http://localhost:9000/groups/messages', {
             headers: { 'Authorization': token },
             params: { groupId }  
         });
@@ -91,7 +91,7 @@ const sendMessageInGroup = async () => {
     if (message.trim() !== "") {
         try {
             const response = await axios.post(
-                "http://localhost:3000/groups/sendMessage",  
+                "http://localhost:9000/groups/sendMessage",  
                 {
                     message: message,
                     group_id: selectedGroupId  
@@ -126,7 +126,7 @@ async function sendMultimediaInGroup(fileName) {
     if (fileName.trim() !== "") {
         try {
             const response = await axios.post(
-                "http://localhost:3000/groups/sendMultimedia",
+                "http://localhost:9000/groups/sendMultimedia",
                 {
                     message: fileName,  
                     group_id: selectedGroupId  
@@ -156,7 +156,7 @@ async function fetchMessagesfromGroup() {
     try {
         const groupId = selectedGroupId;
         
-        const response = await axios.get("http://localhost:3000/groups/messages", {
+        const response = await axios.get("http://localhost:9000/groups/messages", {
             headers: { 'Authorization': token },
             params: { groupId }  
         });
@@ -231,7 +231,7 @@ document.getElementById('create-group-btn').addEventListener('click', async () =
     const groupName = prompt('Enter group name:');
     if (groupName) {
         try {
-            await axios.post('http://localhost:3000/groups/create', { name: groupName }, {
+            await axios.post('http://localhost:9000/groups/create', { name: groupName }, {
                 headers: { 'Authorization': token }
             });
             loadGroups();  
@@ -247,7 +247,7 @@ document.getElementById('invite-users-btn').addEventListener('click', async () =
     const userName = prompt('Enter member name:');
     if (groupName) {
         try {
-            await axios.post('http://localhost:3000/groups/invite', {groupName,userName }, {
+            await axios.post('http://localhost:9000/groups/invite', {groupName,userName }, {
                 headers: { 'Authorization': token }
             });
             alert("User Added Successfully!")
@@ -275,7 +275,7 @@ document.getElementById('remove-users-btn').addEventListener('click', async () =
     const userName = prompt('Enter member name:');
     if (groupName) {
         try {
-            await axios.post('http://localhost:3000/groups/remove', {groupName,userName }, {
+            await axios.post('http://localhost:9000/groups/remove', {groupName,userName }, {
                 headers: { 'Authorization': token }
             });
             alert("User Removed Successfully!")
@@ -292,7 +292,7 @@ document.getElementById('make-admin-btn').addEventListener('click', async () => 
     const userName = prompt('Enter member name:');
     if (groupName) {
         try {
-            await axios.post('http://localhost:3000/groups/makeadmin', {groupName,userName }, {
+            await axios.post('http://localhost:9000/groups/makeadmin', {groupName,userName }, {
                 headers: { 'Authorization': token }
             });
             alert("User made Admin Successfully!")
@@ -307,7 +307,7 @@ async function fetchActiveUsers(groupId) {
 
     selectedGroupId = groupId
     try {
-        const response = await axios.get("http://localhost:3000/groups/active-users", {
+        const response = await axios.get("http://localhost:9000/groups/active-users", {
             headers: {
                 'Authorization': token
 
