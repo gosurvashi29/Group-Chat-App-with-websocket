@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="../css/chat">
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="chat-container">
+        
+        <div id="user-list">
+            <h3>Group Members</h3>
+            <ul id="users">
+                <!-- Active users -->
+            </ul>
+        </div>
+        
+        <div id="chat-window">
+            <div id="messages">
+                <!-- Messages -->
+            </div>
+            <div id="chat-input">
+                <textarea id="message" placeholder="Type a message"></textarea>
+                <button id="send-btn">Send</button>
+                </div>
+            <!--<form action = "/upload" method="POST" enctype="multipart/form-data">-->
+           
+            
+            <div id="file-upload">
+                <input type="file" id="file" name="file">
+                <button id="upload-btn">Send File</button>
+            </div>
+        
+
+        </div>
+    </div>
+    <div id="sidebar">
+        <h3>Your Name</h3>
+        <div id="your-name"></div>
+        <h3>Your Groups</h3>
+        <ul id="groups-list">
+            <!-- Groups listed-->
+        </ul>
+        <button id="create-group-btn">Create Group</button>
+        <button id="invite-users-btn">Invite Users</button>
+        <button id="remove-users-btn">Remove User</button>
+        <button id="make-admin-btn">Make Admin</button>
+
+    </div>
+    
+
+    <script>
+
+        const socket = io('http://localhost:3000')
+        
+    </script>
+    
+    
+
+    
+    <script src="../group"></script>
+</body>
+</html>

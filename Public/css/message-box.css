@@ -1,0 +1,23 @@
+#alert-box {
+    div {
+      position: fixed;
+      top: 40px;
+      right: 40px;
+      background: red;
+      color: #fff;
+      border-radius: 5px;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+  
+      button {
+        border: none;
+        background: none;
+        font-size: 1.2rem;
+        color: white;
+        cursor: pointer;
+      }
+    }
+  }
+  

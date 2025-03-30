@@ -1,0 +1,58 @@
+const Chat = require('../models/messagesModel');  
+const User  = require('../models/userModel');  
+const Group = require('../models/groupModel');
+const ArchivedChat = require('../models/archiveModel');
+const { Op } = require('sequelize');  
+
+const cron = require('cron');
+
+const job = new cron.CronJob('18 11 * * *', async () => {  // Runs every day at midnight
+    try {
+        const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);  // 1 day ago
+         console.log("fetching oldMessages...")
+
+         
+         console.log("oneDayAgo:",oneDayAgo)
+        // Fetch messages older than 1 day
+        const oldMessages = await Chat.findAll({
+            where: {
+                createdAt: {
+                    [Op.lt]: oneDayAgo
+                }
+            }
+        });
+
+        if (oldMessages.length === 0) {
+            console.log('No messages older than 1 day to archive.');
+            return;
+        }
+
+        // Insert the old messages into ArchivedChat table
+        await ArchivedChat.bulkCreate(
+            oldMessages.map(message => ({
+                user_id: message.user_id,
+                group_id: message.group_id,
+                message: message.message,
+                user_name:message.user_name,
+                createdAt: message.createdAt,
+                updatedAt: message.updatedAt
+                //archived_at: new Date()
+            }))
+        );
+
+        // Delete the old messages from the Chat table
+        await Chat.destroy({
+            where: {
+                createdAt: {
+                    [Op.lt]: oneDayAgo
+                }
+            }
+        });
+
+        console.log('Old messages archived and deleted successfully!');
+    } catch (error) {
+        console.error('Error archiving messages:', error);
+    }
+});
+
+job.start();

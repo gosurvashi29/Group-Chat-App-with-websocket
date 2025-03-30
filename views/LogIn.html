@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Day-to-Day Expense Tracker</title>
+    <link rel="stylesheet" href="../css/auth">
+    
+</head>
+<body>
+    
+    
+    <div class="containers">
+        <h1>Sign In</h1>
+        <form onsubmit="logIn(event)" method="post" class="form-controller">
+            
+            <div class="input-controller">
+                <label for ="email">Email :</label>
+                <input type="email" id="email" name="email" required/>
+            </div>
+            <div class="input-controller">
+                <label for ="password">Password :</label>
+                <input type="password" id="password" name="password" required/>
+            </div>
+            <button type ="submit" class="btn btn-submit">Sign In</button>
+            
+        
+        </form>
+        <div class="centered">Don't have an account? <a href ="../views/SignUp">SignUp</a></div>  
+        <div class="centered">Forgot Password? <a href ="../views/ForgotPassword">Click here</a></div>
+    </div>
+    <script src="../LogIn"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+</html>
