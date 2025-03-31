@@ -2,7 +2,7 @@
 const express= require("express");
 const http = require("http")
 const path = require("path")
-require('./cron-job/archiveOldChats');  // This will start the cron job
+require('./cron-job/archiveOldChats');  // This will start the cron
 const bodyParser= require("body-parser")
 const sequelize= require("./util/database")
 const jwt = require('jsonwebtoken');
@@ -36,7 +36,7 @@ const io = new Server(server); // io will handle all our sockets and express wil
 
      
 
-    // Socket connection handling
+    
 io.on("connection", (socket) => {
     console.log("A user connected");
 
